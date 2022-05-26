@@ -29,18 +29,26 @@ router.post("/produtos", async (req, res) => {
   }
 });
 
-router.patch("/produtos/:id", (req, res) => {
-  const id = parseInt(req.params.id);
-  const nome = req.body.nome.substring(0, 150);
-  const preco = req.body.preco.substring(0, 11);
-  exec(
-    `UPDATE ${table} SET Nome='${nome}', Preco='${preco}' WHERE ID=${id}`,
-    res
-  );
+router.patch("/produtos/:id", async (req, res) => {
+  try{
+    const {filial, custo, recno} = req.body;
+    const query = `UPDATE ${table} SET CTT_FILIAL='${filial}', CTT_CUSTO='${custo}' WHERE R_E_C_N_O_=${recno}`
+    await exec(query);
+    res.send({message:"Alterado com sucesso!"}).status(200);
+    } catch (error){
+      res.status(400).send(error);
+    }
 });
 
-router.delete("/produtos/:id", (req, res) => {
-  exec(`DELETE ${table} WHERE ID=` + parseInt(req.params.id), res);
+router.delete("/produtos/:id", async (req, res) => {
+  try{
+    const {recno} = req.body
+    const query = `DELETE from ${table} WHERE R_E_C_N_O_=${recno}`;
+    await exec(query);
+    res.send({message:"Deletado com sucesso!"}).status(200);
+  } catch (error){
+    res.status(400).send(error);
+  }
 });
 
 module.exports = router;

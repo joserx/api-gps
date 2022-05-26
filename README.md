@@ -1,8 +1,10 @@
 # Detalhes do projeto
    
- - Primeiro passo instalar as depêndencias do projeto.
- - Dentro da pasta APIGPS, rodar npm i no terminal;
+ - Instalar as depêndencias do projeto, rodando o comando "npm i" dentro da pasta APIGPS
+ - Realizar a conexão com o seu banco de dados SQL, utilizando as credenciais de login conforme o arquivo de exemplo .env
+ -Após inserir as credencias rodar o comando "npm start" dentro da pasta APIGPS
 
- ## Conexão com o banco
+ 
 
- Para a conexão com o seu banco de dados sql, utilizar o arquivo .env de exemplo. Substituindo pelas suas credenciais correspondentes.
+
+ 

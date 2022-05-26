@@ -12,10 +12,15 @@ router.get("/produtos", async (req, res) => {
   }
 });
 
-router.get("/produtos/:id?", (req, res) => {
-  let filter = "";
-  if (req.params.id) filter = " WHERE ID=" + parseInt(req.params.id);
-  exec(`SELECT * FROM ${table}` + filter, res);
+router.get("/produtos/:id", async (req, res) => {
+  try{
+    const {recno} = req.body;
+    const query = `SELECT * FROM ${table} WHERE ID=${recno}`
+    await exec(query);
+    res.send(res).status(200);
+  } catch (error){
+    res.status(400).send(error);
+  }
 });
 
 router.post("/produtos", async (req, res) => {

@@ -14,8 +14,8 @@ router.get("/produtos", async (req, res) => {
 
 router.get("/produtos/:id", async (req, res) => {
   try{
-    const {recno} = req.body;
-    const query = `SELECT * FROM ${table} WHERE ID=${recno}`
+    const {id} = req.params.id;
+    const query = `SELECT * FROM ${table} WHERE ID=${id}`
     await exec(query);
     res.send(res).status(200);
   } catch (error){
